@@ -103,3 +103,7 @@ void ImprimeVetorPalavras(VetorPalavras* vetorPalavras){
         }
     }
 }
+
+Palavra** RetornaArray(VetorPalavras* vetorPalavras){
+    return vetorPalavras -> vetor;
+}

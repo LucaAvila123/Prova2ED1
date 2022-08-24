@@ -5,14 +5,13 @@
 #include "palavra.h"
 
 int MaiorOcorrencias(const void* a, const void* b){
-    if(RetornaOcorrencias((Palavra*) a) > RetornaOcorrencias((Palavra*) b))
-        return 1;
-    
-    else if(RetornaOcorrencias((Palavra*) a) < RetornaOcorrencias((Palavra*) b))
-        return -1;
-    
-    else
-        return 0;
+    Palavra* p1 = *((Palavra**) a);
+    Palavra* p2 = *((Palavra**) b);
+
+    int final = RetornaOcorrencias(p1) - RetornaOcorrencias(p2);
+    if(final > 0) return 1;
+    if(final < 0) return -1;
+    if(final == 0) return 0;
 }
 int main(){
 
@@ -39,7 +38,9 @@ int main(){
 
     VetorPalavras* vetorPalavras = InicializaVetorPalavras(PalavrasDistintas(arv));
     InsereDaArvoreNoVetor(arv, vetorPalavras);
-    qsort(vetorPalavras, PalavrasDistintas(arv), sizeof(Palavra*), MaiorOcorrencias);
+    // lembre-se de que o tipo vetorPalavras não é um vetor propriamente dito, mas sim um tipo que guarda um vetor, e o qsort não vai ler isso
+    // O qsort lê o vetor, não o TAD que o guarda 
+    qsort(RetornaArray(vetorPalavras), PalavrasDistintas(arv), sizeof(Palavra*), MaiorOcorrencias);
     ImprimeVetorPalavras(vetorPalavras);
 
     LiberaArvPalavra(arv);

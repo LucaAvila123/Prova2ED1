@@ -27,4 +27,6 @@ void LiberaVetorPalavras(VetorPalavras* vetorPalavras);
 
 void ImprimeVetorPalavras(VetorPalavras* vetorPalavras);
 
+Palavra** RetornaArray(VetorPalavras* vetorPalavras);
+
 #endif
